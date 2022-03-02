@@ -47,7 +47,6 @@ namespace gol {
 
 	}
 
-
 	int Game::Compare_grid() {
 		if (grid_data.get_position_data() == last_position_data) {
 			return 1;

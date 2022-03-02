@@ -20,7 +20,7 @@ static void show_usage(string name)
 int main(int argc, char* argv[]) {
 	
 	if (argc < 2 || argc>5 || argc==4) {
-		cout << argv[0] << endl;
+		show_usage(argv[0]);
 		return 0;
 	}
 	
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
 			return 0;
 		}
 		else {
-			cout << argv[0] << endl;
+			show_usage(argv[0]);
 			return 0;
 		}
 	}
