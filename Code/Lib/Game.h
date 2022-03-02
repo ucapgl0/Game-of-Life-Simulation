@@ -15,12 +15,12 @@ namespace gol {
 		void TakeStep();
 		void PrintGrid();
 		int Compare_grid();
-		vector<string> get_grid_data();
+		vector<vector<string>> get_grid_data();
         Game(gol::grid &g);
 
 	private:
 		grid grid_data;
-		vector<string> last_position_data;
+		vector<vector<string>> last_position_data;
 
 };
 

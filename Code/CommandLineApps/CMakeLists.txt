@@ -12,20 +12,12 @@
 #
 #============================================================================*/
 
-set(_command_line_apps
-  golMyFirstApp
-)
-
-foreach(_app ${_command_line_apps})
-  add_executable(${_app} ${_app}.cpp)
-  target_link_libraries(${_app} ${PHAS0100ASSIGNMENT1_LIBRARIES} ${ALL_THIRD_PARTY_LIBRARIES})
-endforeach()
 
 set(_command_line_apps1
   gofSimulator
 )
 
-foreach(_app1 ${simulator})
+foreach(_app1 ${_command_line_apps1})
   add_executable(${_app1} ${_app1}.cpp)
   target_link_libraries(${_app1} ${PHAS0100ASSIGNMENT1_LIBRARIES} ${ALL_THIRD_PARTY_LIBRARIES})
 endforeach()

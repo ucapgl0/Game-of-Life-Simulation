@@ -19,14 +19,14 @@ namespace gol {
 		void print();
 		void set_cell_content(int row, int col, string content);
 		int alives_neighbour(int row, int col);
-		vector<string> get_position_data();
+		vector<vector<string>> get_position_data();
 		int get_rows();
 		int get_columns();
 
 	private:
 		int rows;
 		int cols;
-		vector<string> position_data;
+		vector<vector<string>> position_data;
 
 	};
 }

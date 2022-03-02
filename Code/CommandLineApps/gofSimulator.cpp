@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
 	
 	if (argc == 2) {
 		if ((argv[1] == "-h") || (argv[1] == "--help")) {
-			cout << argv[0] << endl;
+			show_usage(argv[0]);
 			return 0;
 		}
 		else {
