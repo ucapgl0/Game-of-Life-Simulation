@@ -34,6 +34,18 @@ namespace gol {
 		position_data[(row - 1)*cols + col - 1] = content;
 	}
 
+    void grid::print() {
+		int i = 0;
+		while (i < rows) {
+			for (int j = 0; j < cols; j++) {
+				int index = i * cols + j;
+				cout << position_data[index] << ' ';
+			}
 
+			i = i + 1;
+			cout << "\n";
+		}
+		cout << endl;
+	}
 
 }
