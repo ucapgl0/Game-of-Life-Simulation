@@ -16,6 +16,7 @@ namespace gol {
 		void PrintGrid();
 		int Compare_grid();
 		vector<string> get_grid_data();
+        Game(gol::grid &g);
 
 	private:
 		grid grid_data;

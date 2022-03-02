@@ -24,6 +24,12 @@ namespace gol {
 		return cols;
 	}
 
+    grid::grid(const grid &v) {
+		this->position_data = v.position_data;
+		this->rows = v.rows;
+		this->cols = v.cols;
+	}
+
 	grid::grid(int rows, int cols) :rows(rows), cols(cols) {
 		for (int i = 0; i < rows*cols; i++) {
 			position_data.push_back("o");

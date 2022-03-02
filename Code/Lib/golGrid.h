@@ -1,4 +1,6 @@
-# include<iostream>
+#ifndef golGrid_h
+#define golGrid_h
+#include <iostream>
 #include <vector>
 #include <string>
 
@@ -11,7 +13,7 @@ namespace gol {
 	public:
 		grid(int rows, int cols);
 		grid(int rows, int cols, int alives);
-		grid(std::string file_name);
+		grid(string file_name);
 		grid(const grid &v);
 
 		void print();
@@ -28,3 +30,4 @@ namespace gol {
 
 	};
 }
+#endif

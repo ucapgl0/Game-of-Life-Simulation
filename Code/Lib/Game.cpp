@@ -10,9 +10,9 @@ using std::vector;
 
 namespace gol {
 
-//    Game::Game(gol::grid &g) : grid_data(g) {
+    Game::Game(gol::grid &g) : grid_data(g) {
 
-//	}
+	}
 
 	vector<string> Game::get_grid_data(){
 		return grid_data.get_position_data();
