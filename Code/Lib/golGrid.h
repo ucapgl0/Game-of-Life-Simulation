@@ -14,8 +14,12 @@ namespace gol {
 		grid(std::string file_name);
 		grid(const grid &v);
 
-		
-
+		void print();
+		void set_cell_content(int row, int col, string content);
+		int alives_neighbour(int row, int col);
+		vector<string> get_position_data();
+		int get_rows();
+		int get_columns();
 
 	private:
 		int rows;
