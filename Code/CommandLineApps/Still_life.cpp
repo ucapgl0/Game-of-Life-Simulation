@@ -32,35 +32,31 @@ int main(int argc, char* argv[])
     }   
 
     if (argc == 6){
-        if (stoi(argv[4]) < 0){
-        throw invalid_argument("iteration should be a non-negative integer.");
-    }
+        gol::validate_iteration(stoi(argv[4]));
         int alives = stoi(argv[1]);
         int row = stoi(argv[2]);
         int col = stoi(argv[3]);
         int iteration = stoi(argv[4]);
         int number_grid = stoi(argv[5]);
         
-        gol::grid grid_Data(row, col, alives);
-        gol::Game gol(grid_Data);
         for (int n=0; n<number_grid;n++){
+            gol::grid grid_Data(row, col, alives);
+            gol::Game gol(grid_Data);
             int i = 0;
+
             while(i<iteration){
                 gol.TakeStep();
                 if (gol.Compare_grid()==1){
                     gol.PrintGrid();
-                    
                     break;
                 }
                 i = i + 1;
             }
 
-            gol::grid grid_Data(row, col, alives);
-            gol::Game gol(grid_Data);
             this_thread::sleep_for(chrono::seconds(1));
-    }
+        }
         
         return 1;
    
-}
+    }
 }

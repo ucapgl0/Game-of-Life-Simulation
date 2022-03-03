@@ -9,6 +9,11 @@ using namespace std;
 using std::vector;
 
 namespace gol {
+	void validate_iteration(int iteration){
+		if (iteration<0){
+        throw std::invalid_argument("The number of iteration should be a non-negative integer.");
+    }
+	}
 
     Game::Game(gol::grid &g) : grid_data(g) {
 

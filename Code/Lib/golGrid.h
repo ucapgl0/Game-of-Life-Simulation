@@ -29,5 +29,7 @@ namespace gol {
 		vector<vector<string>> position_data;
 
 	};
+	void validate_row_col(int row,int col);
+	void validate_num_alive(int row,int col,int alive);
 }
 #endif

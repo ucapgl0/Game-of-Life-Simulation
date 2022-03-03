@@ -15,6 +15,17 @@ using std::vector;
 
 namespace gol {
 
+	void validate_row_col(int row,int col){
+		if (row <=0 or col <=0){
+			throw invalid_argument("The number of row and column should be positive integers.");
+		}
+	}
+	void validate_num_alive(int row,int col,int alive){
+		if (alive>(row*col)){
+			throw out_of_range("The number of alive cells should be less than the number of cells.");
+		}
+	}
+
 	vector<vector<string>> grid::get_position_data() {
 		return position_data;
 	}
@@ -63,9 +74,6 @@ namespace gol {
 	}
 
     grid::grid(int row, int col, int alives) :rows(row), cols(col) {
-		if(row < 0 || col < 0){
-			throw invalid_argument("the number of rows and columns should be positive integer.");
-		}
 		srand(time(0));
 		vector<string> random_v;
 		for (int i = 0; i < alives; i++) random_v.push_back("o");

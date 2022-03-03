@@ -15,9 +15,9 @@
 set(PHAS0100ASSIGNMENT1_LIBRARY_NAME PHAS0100ASSIGNMENT1)
 
 set(PHAS0100ASSIGNMENT1_LIBRARY_SRCS
-  golBasicTypes.cpp
-  golMyFunctions.cpp
-  golException.cpp
+  # golBasicTypes.cpp
+  # golMyFunctions.cpp
+  # golException.cpp
   Game.cpp
   golGrid.cpp
 )

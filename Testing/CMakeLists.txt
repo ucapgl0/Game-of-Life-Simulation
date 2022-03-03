@@ -16,9 +16,9 @@ set(DATA_DIR ${CMAKE_SOURCE_DIR}/Testing/Data)
 set(TMP_DIR ${CMAKE_BINARY_DIR}/Testing/Temporary)
 
 set(TEST_CASES
-  golBasicTest
-  golCommandLineArgsTest
-  unit_test
+  # golBasicTest
+  # golCommandLineArgsTest
+  # unit_test
 )
 
 foreach(_test_case ${TEST_CASES})

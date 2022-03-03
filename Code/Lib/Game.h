@@ -8,7 +8,7 @@ using namespace std;
 using std::vector;
 
 namespace gol {
-
+	void validate_iteration(int iteration);
 	class Game {
 	
 	public:
