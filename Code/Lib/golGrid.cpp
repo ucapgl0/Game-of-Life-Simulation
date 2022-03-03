@@ -63,7 +63,9 @@ namespace gol {
 	}
 
     grid::grid(int row, int col, int alives) :rows(row), cols(col) {
-		//grid::grid(rows, cols, alive) {};
+		if(row < 0 || col < 0){
+			throw invalid_argument("the number of rows and columns should be positive integer.");
+		}
 		srand(time(0));
 		vector<string> random_v;
 		for (int i = 0; i < alives; i++) random_v.push_back("o");
@@ -129,12 +131,11 @@ namespace gol {
 		
 
 	int grid::alives_neighbour(int row, int col) {
+		
 		int count = 0;
-		if (row > rows || col > cols) {
-
-		}
-		else if (row < 1 || col < 1) {
-
+		
+		if (row < 1 || col < 1) {
+			throw invalid_argument("the number of rows and columns should be positive integer.");
 		}
 		else {
 			// left-up

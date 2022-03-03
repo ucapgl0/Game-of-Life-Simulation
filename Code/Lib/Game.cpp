@@ -24,10 +24,10 @@ namespace gol {
 
     void Game::TakeStep() {
 		grid temp_grid(grid_data);
-		int rows = temp_grid.get_rows();
-		int cols = temp_grid.get_columns();
 		vector<vector<string>> temp_data = temp_grid.get_position_data();
 		last_position_data = temp_data;
+		int rows = temp_grid.get_rows();
+		int cols = temp_grid.get_columns();		
 		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
@@ -36,12 +36,13 @@ namespace gol {
 					if (temp_grid.alives_neighbour(i + 1, j + 1) < 2 || temp_grid.alives_neighbour(i + 1, j + 1) > 3) {
 						grid_data.set_cell_content(i + 1, j + 1, "-");
 					}
+					}
 					if (temp_data[i][j] == "-") {
 						if (temp_grid.alives_neighbour(i + 1, j + 1) == 3) {
 							grid_data.set_cell_content(i + 1, j + 1, "o");
 						}
 				}
-				}
+				
 			}
 		}
 

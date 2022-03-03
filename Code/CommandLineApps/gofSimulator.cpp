@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 	if (argc == 3) {
 		string file = argv[1];
         if(stoi(argv[2])<0){
-
+			throw invalid_argument("iteration should be a non-negative integer.");
         }
         int iteration = stoi(argv[2]);
         gol::grid grid_Data(file);
@@ -51,6 +51,9 @@ int main(int argc, char* argv[]) {
 	}
 
     if (argc == 5) {
+		if (stoi(argv[4]) < 0){
+        throw invalid_argument("iteration should be a non-negative integer.");
+    }
         int rows = stoi(argv[1]);
 		int cols = stoi(argv[2]);
 		int alives = stoi(argv[3]);
