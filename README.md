@@ -67,7 +67,7 @@ And there are two options to use this command-line application.
 (2) starting with random cell contents for the initial conditions. 
 
 ```Bash
-./bin/gofSimulator <row> <column> <alives> <iterations>
+./bin/gofSimulator <rows> <columns> <alives> <iterations>
 ```
 
 If users input invaild number of arguments, the usage information will be returned.
@@ -90,7 +90,7 @@ And there is only one option to use this command-line application.
 User could app 5 arguments to control the number of alive cells, the grid size, the number of iterations and the number of stationary patterns to try for each configuration when searching for Still Life’s.
 
 ```Bash
-./bin/Still_life <alives> <row> <column> <iterations> <number_of_configurations>
+./bin/Still_life <alives> <rows> <columns> <iterations> <number_of_configurations>
 ```
 
 If users input invaild number of arguments, the usage information will be returned.
@@ -116,8 +116,8 @@ I found these stationary patterns from generations.
 
 5 x 5 Grid| |
 --------|--------
-![5x5fig1](/screengrabs/5x5_still_life1.png)|![5x5fig2](/screengrabs/5x5_still_life2.png)
+![5x5fig1](/screengrabs/5x5still_life1.png)|![5x5fig2](/screengrabs/5x5still_life2.png)
 
 6 x 6 Grid| |
 --------|--------
-![6x6fig1](/screengrabs/6x6_still_life1.png)|![6x6fig2](/Screengrabs/6x6_still_life2.png)
+![6x6fig1](/screengrabs/6x6still_life1.png)|![6x6fig2](/Screengrabs/6x6still_life2.png)
