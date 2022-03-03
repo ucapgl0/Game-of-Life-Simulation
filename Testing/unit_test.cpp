@@ -42,8 +42,6 @@ TEST_CASE( "Invalid position" , "[Invalid position]")
   REQUIRE_THROWS(grid2.alives_neighbour(5,5));
 }
 
-
-
 int count_alive_cell(vector<vector<string>> position_data){
   // Count the number of alive cells in a grid
   int alives = 0;

@@ -2,13 +2,16 @@
 #include <vector>
 #include <time.h>
 #include <ctime>
-#include<algorithm>
+#include <algorithm>
 #include <fstream>
 #include <sstream>
-#include<cassert>
+#include <cassert>
 #include <stdexcept>
-#include<exception> 
+#include <exception> 
+#include <iterator>
+#include <random>
 #include "golGrid.h"
+
 
 
 using namespace std;
@@ -130,18 +133,23 @@ namespace gol {
 
     grid::grid(int row, int col, int alives) :rows(row), cols(col) {
 		validate_num_alive(row, col, alives);
-		//srand(time(NULL));
+		srand(time(NULL));
 		vector<string> tmp_v;
-		vector<int> random_position, position;
+		vector<int> random_position;
+		vector<int> position;
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
 				tmp_v.push_back("-");
 			}
 			position_data.push_back(tmp_v);
 			tmp_v.clear();
-		}	
-		for (int i = 0; i < row*col; i++) position.push_back(i);
-		random_shuffle(position.begin(), position.end());
+		}
+		for (int i = 1; i <= row*col; i++){
+			position.push_back(i);
+		}
+		std::random_device rd; 
+		std::mt19937 g(rd());
+		std::shuffle(position.begin(), position.end(),g);
 
 		for (int i = 0; i < alives; i++){
 			random_position.push_back(position[i]);
@@ -154,8 +162,6 @@ namespace gol {
 		}
 	}
 	
-
-
 	grid::grid(string file) {
 		ifstream ifs;
 		ifs.open(file);
@@ -190,15 +196,15 @@ namespace gol {
 	int grid::alives_neighbour(int row, int col) {
 		
 		int count = 0;
-		if (row > rows || col > cols) {
+		if (row > rows or col > cols) {
 			throw invalid_argument("the number of rows and columns should not be out of grid.");
 		}
-		if (row < 1 || col < 1) {
+		if (row < 1 or col < 1) {
 			throw invalid_argument("the number of rows and columns should be positive integer.");
 		}
-		else {
+		
 			// left-up
-			if (row - 2 > -1 && col - 2 > -1) {
+			if ((row - 2) > -1 && (col - 2) > -1) {
 				if (position_data[row - 2][col-2] == "o") {
 					count = count + 1;
 				}
@@ -246,7 +252,6 @@ namespace gol {
 				}
 			}
 			
-		}
 		return count;
 	}
 
