@@ -25,4 +25,99 @@ and [Dr. Matt Clarkson](https://iris.ucl.ac.uk/iris/browse/profile?upi=MJCLA42).
 Build Instructions
 ------------------
 
-Build and run instructions are left as an excercise for the student. Examples of how to build using cmake were given in lectures and in the other CMake example projects.
+To build this project.
+
+First, turn on the IDE(like VS code) by Dev Container and open the project as the folder.
+
+Second, open new terminal and input the comand below on terminal to build the document.
+
+```Bash
+mkdir build
+cd build
+cmake ..
+make
+```
+After building document, users could run the project following the run instruction below.
+
+Use instruction
+---
+There are two application on this project, one is ***gofSimulator*** and the other is ***Still-life***
+
+### **Command-line application 1: gofSimulator**
+
+This command line application runs the Game of Life simulation.
+
+User could check the usage information by input comands from the build director:
+
+```Bash
+./bin/gofSimulator -h
+```
+or
+```Bash
+./bin/gofSimulator --help
+```
+
+And there are two options to use this command-line application.
+
+(1) specifying a text file input;
+
+```Bash
+./bin/gofSimulator <file> <iterations>
+```
+(2) starting with random cell contents for the initial conditions. 
+
+```Bash
+./bin/gofSimulator <row> <column> <alives> <iterations>
+```
+
+If users input invaild number of arguments, the usage information will be returned.
+
+### **Command-line application 2: Still_life**
+
+This command line application will print stationary patterns of grid cells if it is exist.
+
+User could check the usage information by input comands from the build director:
+
+```Bash
+./bin/Still_life -h
+```
+or
+```Bash
+./bin/Still_life --help
+```
+And there is only one option to use this command-line application.
+
+User could app 5 arguments to control the number of alive cells, the grid size, the number of iterations and the number of stationary patterns to try for each configuration when searching for Still Life’s.
+
+```Bash
+./bin/Still_life <alives> <row> <column> <iterations> <number_of_configurations>
+```
+
+If users input invaild number of arguments, the usage information will be returned.
+
+### **Unit Tests**
+Users can input the command below to run the file "unit_test.cpp" to test.
+```Bash
+ctest -V
+```
+
+Still Life’s 
+------------
+
+I found these stationary patterns from generations.
+
+3 x 3 Grid | |
+--------- | --------|
+![3x3fig1](/screengrabs/3x3still_life.png)|![3x3fig2](/screengrabs/3x3still_life2.png)
+
+4 x 4 Grid| | |
+--------- | --------|--------|
+![4x4fig1](/screengrabs/problem9d_4x4still_life1.png)  | ![4x4fig2](/screengrabs/problem9d_4x4still_life2.png) |![4x4fig3](/screengrabs/problem9d_4x4still_life3.png)
+
+5 x 5 Grid| |
+--------|--------
+![5x5fig1](/screengrabs/5x5_still_life1.png)|![5x5fig2](/screengrabs/5x5_still_life2.png)
+
+6 x 6 Grid| |
+--------|--------
+![6x6fig1](/screengrabs/6x6_still_life1.png)|![6x6fig2](/Screengrabs/6x6_still_life2.png)
