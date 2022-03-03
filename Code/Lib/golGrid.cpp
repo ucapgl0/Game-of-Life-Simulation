@@ -130,21 +130,30 @@ namespace gol {
 
     grid::grid(int row, int col, int alives) :rows(row), cols(col) {
 		validate_num_alive(row, col, alives);
-		srand(time(0));
-		vector<string> random_v;
-		for (int i = 0; i < alives; i++) random_v.push_back("o");
-		for (int i = alives; i < row*col; i++)random_v.push_back("-");
-		random_shuffle(random_v.begin(), random_v.end());
-
-		vector<string> t;
-		for (int i = 0; i < rows; i++) {
-			for(int j = 0; j < cols; j++){
-				t.push_back(random_v[i*cols + j]);
+		//srand(time(NULL));
+		vector<string> tmp_v;
+		vector<int> random_position, position;
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				tmp_v.push_back("-");
 			}
-			position_data.push_back(t);
-			t.clear();
+			position_data.push_back(tmp_v);
+			tmp_v.clear();
+		}	
+		for (int i = 0; i < row*col; i++) position.push_back(i);
+		random_shuffle(position.begin(), position.end());
+
+		for (int i = 0; i < alives; i++){
+			random_position.push_back(position[i]);
+		}
+
+		for (int i = 0; i < alives; i++) {
+			int alive_row = ((random_position[i]-1)/col);
+			int alive_col = (random_position[i]- 1 - col * alive_row);
+			position_data[alive_row][alive_col]="o";
 		}
 	}
+	
 
 
 	grid::grid(string file) {
@@ -170,20 +179,9 @@ namespace gol {
 			column_vector.push_back(col_num);
 			temp_row.clear();
 		}
-			//temp_row_num.push_back(std::to_string(row_num));
-			cols=(col_num / row_num);
-			//celldata.push_back(temp_row_num);
-			//celldata.push_back(temp_col_num);
-			//std::vector<std::string> row_num1;
-			//std::vector<std::string> col_num1;
-			//col_num1 = celldata.back();
-			//temp.pop_back();
-			//row_num1 = celldata.back();
-			//temp.pop_back();
-			//cols = std::stoi(col_num1[0]);
-
-			rows = row_num;
 			
+			cols=(col_num / row_num);
+			rows = row_num;
 			position_data = file_data;
 
 		}
