@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <time.h>
+#include <ctime>
 #include<algorithm>
 #include <fstream>
 #include <sstream>
@@ -26,6 +27,59 @@ namespace gol {
 		}
 	}
 
+	void validate_file(string file){
+		ifstream ifs;
+		ifs.open(file);
+		if (!ifs.is_open()) {
+			throw invalid_argument("The file does not exist.");
+		}
+		string temp;
+        vector<string> temp_row, temp_row_num, temp_col_num;
+		vector<int> column_v;
+		vector<vector<string>> file_data;		
+		int row_num = 0;
+		int col_num = 0;
+		while (getline(ifs, temp))
+		{			
+			row_num = row_num + 1;
+			stringstream input(temp);
+			string out;
+			while (input >> out) {
+				col_num = col_num + 1;
+				temp_row.push_back(out);
+			}
+			file_data.push_back(temp_row);
+			column_v.push_back(col_num);
+			temp_row.clear();
+		}
+		if(row_num == 0){
+			throw invalid_argument("The file is empty");
+		}
+
+		if (column_v.size()!=1){
+			int diff = column_v[1]-column_v[0];
+			if (column_v[0]!=diff){
+				throw std::invalid_argument("The grid is not a rectangle or square.");
+				}
+			else{
+				for (int i=1;i<column_v.size()-1;i++){
+					if ((column_v[i+1]-column_v[i])!=diff){
+						throw std::invalid_argument("The grid is not a rectangle or square.");
+					}
+				}
+
+			}
+		}
+			for (int i=0;i<file_data.size();i++){
+				for (int j=0;j<file_data[i].size();j++){
+					if (file_data[i][j]!="o" and file_data[i][j]!="-"){
+						throw std::invalid_argument("file content should only contains two of characters: 'o' '-' .");
+					}
+				}
+			}
+
+	}
+
 	vector<vector<string>> grid::get_position_data() {
 		return position_data;
 	}
@@ -44,10 +98,11 @@ namespace gol {
 		this->cols = v.cols;
 	}
 
-	grid::grid(int rows, int cols) :rows(rows), cols(cols) {
+	grid::grid(int row, int col) :rows(row), cols(col) {
+		validate_row_col(row, col);
 		vector<string> t;
-		for (int i = 0; i < rows; i++) {
-			for(int j = 0; j < cols; j++){
+		for (int i = 0; i < row; i++) {
+			for(int j = 0; j < col; j++){
 				t.push_back("o");
 			}
 			position_data.push_back(t);
@@ -74,6 +129,7 @@ namespace gol {
 	}
 
     grid::grid(int row, int col, int alives) :rows(row), cols(col) {
+		validate_num_alive(row, col, alives);
 		srand(time(0));
 		vector<string> random_v;
 		for (int i = 0; i < alives; i++) random_v.push_back("o");
@@ -94,46 +150,41 @@ namespace gol {
 	grid::grid(string file) {
 		ifstream ifs;
 		ifs.open(file);
-		if (!ifs.is_open()) {
-			cout << "file open unsuccessfully" << endl;
-		}
-
-        vector<string> file_data;
 		string temp;
-        std::vector<std::string> temp_row, temp_row_num, temp_col_num;
-		std::vector<int> column_vector;
-		std::vector<std::vector<std::string>> celldata;
+        vector<string> temp_row, temp_row_num, temp_col_num;
+		vector<int> column_vector;
+		vector<vector<string>> file_data;
 		
 		int row_num = 0;
 		int col_num = 0;
 		while (getline(ifs, temp))
-		{
-			file_data.push_back(temp);
+		{			
 			row_num = row_num + 1;
-			std::stringstream input(temp);
-			std::string out;
+			stringstream input(temp);
+			string out;
 			while (input >> out) {
 				col_num = col_num + 1;
 				temp_row.push_back(out);
 			}
-			celldata.push_back(temp_row);
+			file_data.push_back(temp_row);
 			column_vector.push_back(col_num);
 			temp_row.clear();
-	}
-			temp_row_num.push_back(std::to_string(row_num));
-			temp_col_num.push_back(std::to_string(col_num / row_num));
-			celldata.push_back(temp_row_num);
-			celldata.push_back(temp_col_num);
-			std::vector<std::string> row_num1;
-			std::vector<std::string> col_num1;
-			col_num1 = celldata.back();
-			temp.pop_back();
-			row_num1 = celldata.back();
-			temp.pop_back();
+		}
+			//temp_row_num.push_back(std::to_string(row_num));
+			cols=(col_num / row_num);
+			//celldata.push_back(temp_row_num);
+			//celldata.push_back(temp_col_num);
+			//std::vector<std::string> row_num1;
+			//std::vector<std::string> col_num1;
+			//col_num1 = celldata.back();
+			//temp.pop_back();
+			//row_num1 = celldata.back();
+			//temp.pop_back();
+			//cols = std::stoi(col_num1[0]);
 
-			rows = std::stoi(row_num1[0]);
-			cols = std::stoi(col_num1[0]);
-			position_data = celldata;
+			rows = row_num;
+			
+			position_data = file_data;
 
 		}
 		
@@ -141,7 +192,9 @@ namespace gol {
 	int grid::alives_neighbour(int row, int col) {
 		
 		int count = 0;
-		
+		if (row > rows || col > cols) {
+			throw invalid_argument("the number of rows and columns should not be out of grid.");
+		}
 		if (row < 1 || col < 1) {
 			throw invalid_argument("the number of rows and columns should be positive integer.");
 		}

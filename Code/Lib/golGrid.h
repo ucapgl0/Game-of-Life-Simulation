@@ -31,5 +31,6 @@ namespace gol {
 	};
 	void validate_row_col(int row,int col);
 	void validate_num_alive(int row,int col,int alive);
+	void validate_file(string file);
 }
 #endif

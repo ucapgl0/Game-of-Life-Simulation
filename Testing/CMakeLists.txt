@@ -18,7 +18,7 @@ set(TMP_DIR ${CMAKE_BINARY_DIR}/Testing/Temporary)
 set(TEST_CASES
   # golBasicTest
   # golCommandLineArgsTest
-  # unit_test
+    unit_test
 )
 
 foreach(_test_case ${TEST_CASES})
@@ -33,5 +33,7 @@ endforeach()
 # Dont forget its:  add_test(<test name (globally unique) > <exe name> <argument1> <argument2>
 ##################################################################################################
 
-add_test(NoArgs ${EXECUTABLE_OUTPUT_PATH}/golBasicTest)
-add_test(1File ${EXECUTABLE_OUTPUT_PATH}/golCommandLineArgsTest ${DATA_DIR}/input.txt)
+# add_test(NoArgs ${EXECUTABLE_OUTPUT_PATH}/golBasicTest)
+# add_test(1File ${EXECUTABLE_OUTPUT_PATH}/golCommandLineArgsTest ${DATA_DIR}/input.txt)
+add_test(test ${EXECUTABLE_OUTPUT_PATH}/unit_test)
+# add_test(1File ${EXECUTABLE_OUTPUT_PATH}/golCommandLineArgsTest ${DATA_DIR}/input.txt)
